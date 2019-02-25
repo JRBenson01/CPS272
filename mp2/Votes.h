@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -9,7 +11,7 @@ class Candidate
 private:
 	int votes;
 	string name;
-	double voteShare;
+	double voteShare = -1.0;
 public:
 	Candidate(string n = "Doe", int v = 0) : votes(v), name(n) {}
 	void SetVotes(int newVotes);
@@ -30,8 +32,10 @@ private:
 	vector<Candidate> candList;
 	int totalVotes = 0;
 public:
+	VoteList();
 	void AddCandidate(Candidate candToAdd);
 	void CalcVoteShare();
 	void SortCands();
 	void ProcessVotes();
+	int GetSize();
 };
