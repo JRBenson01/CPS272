@@ -53,9 +53,13 @@ bool Candidate::operator<(const Candidate& rightSideObj)
 //=====+ VoteList class +=====
 VoteList::VoteList()
 {
-
+	//cout << "Constructor called" << endl;
 }
 
+VoteList::~VoteList()
+{
+	//cout << "YOU HAVE BECOME THE VERY THING YOU SWORE TO DESTROY" << endl;
+}
 
 void VoteList::AddCandidate(Candidate candToAdd)
 {
@@ -65,11 +69,13 @@ void VoteList::AddCandidate(Candidate candToAdd)
 
 void VoteList::CalcVoteShare()
 {
-	for (int i = 0; i < candList.size; i++)
+	for (int i = 0; i < candList.size(); i++)
 	{
-		double tempVoteS = candList[i].GetVoteShare() / totalVotes;
+		double tempVoteS = candList[i].GetVotes() / static_cast<double>(totalVotes);
+		tempVoteS *= 100;
 		candList[i].SetVoteShare(tempVoteS);
 	}
+
 }
 
 void VoteList::SortCands()
@@ -85,7 +91,7 @@ void VoteList::ProcessVotes()
 
 int VoteList::GetSize()
 {
-	return candList.size;
+	return candList.size();
 }
 
 istream& operator>>(istream& givenStream, VoteList& rightSideObj)
@@ -102,12 +108,12 @@ istream& operator>>(istream& givenStream, VoteList& rightSideObj)
 ostream& operator<<(ostream& givenStream, const VoteList& rightSideObj) 
 {
 
-	for (int i = 0; i < rightSideObj.candList.size; i++)
+	for (int i = 0; i < rightSideObj.candList.size(); i++)
 	{
 		Candidate currentCand = rightSideObj.candList[i];
 		givenStream << left << setw(NAME_LEN) << currentCand.GetName();
-		givenStream << right << setw(COUNT_LEN) << currentCand.GetVotes();
-		givenStream << setw(PERC_LEN) << currentCand.GetVoteShare << '%'
+		givenStream << setw(COUNT_LEN) << currentCand.GetVotes();
+		givenStream << right << setw(PERC_LEN) << currentCand.GetVoteShare() << '%'
 					<< endl;
 	}
 
