@@ -1,0 +1,11 @@
+supervisor 300 20
+clerk 301 30
+supervisor 302 35
+president 303 10
+manager 304 10 
+manager 305 40
+president 306 50 
+supervisor 307 70 
+clerk 308 20 
+clerk 309 20
+supervisor 310 60
