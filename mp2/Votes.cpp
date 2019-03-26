@@ -81,6 +81,7 @@ void VoteList::CalcVoteShare()
 void VoteList::SortCands()
 {
 	sort(candList.begin(), candList.end());
+	reverse(candList.begin(), candList.end());
 }
 
 void VoteList::ProcessVotes()
@@ -107,13 +108,15 @@ istream& operator>>(istream& givenStream, VoteList& rightSideObj)
 
 ostream& operator<<(ostream& givenStream, const VoteList& rightSideObj) 
 {
-
+	givenStream << left << setw(NAME_LEN) << "Name:"
+		<< setw(COUNT_LEN) << "Votes:"
+		<< setw(PERC_LEN) << "%Share:" << endl;
 	for (int i = 0; i < rightSideObj.candList.size(); i++)
 	{
 		Candidate currentCand = rightSideObj.candList[i];
 		givenStream << left << setw(NAME_LEN) << currentCand.GetName();
-		givenStream << setw(COUNT_LEN) << currentCand.GetVotes();
-		givenStream << right << setw(PERC_LEN) << currentCand.GetVoteShare() << '%'
+		givenStream << defaultfloat << setw(COUNT_LEN) << currentCand.GetVotes();
+		givenStream << right << fixed << setprecision(1) << setw(PERC_LEN) << currentCand.GetVoteShare() << '%'
 					<< endl;
 	}
 

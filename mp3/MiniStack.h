@@ -10,7 +10,7 @@ private:
 	int counter;
 	int length;
 public:
-	MiniStack(int s = 10);
+	MiniStack<T>(int s = 10);
 	bool Empty() const;
 	int Size() const;
 	void Push(const T& val);
@@ -20,6 +20,6 @@ public:
 };
 
 
-
+#include "MiniStack.cpp"
 
 

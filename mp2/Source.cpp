@@ -19,6 +19,7 @@ int main()
 	{
 		fin >> myVoteList;
 	}
+
 	myVoteList.ProcessVotes();
 	cout << myVoteList << endl;
 }

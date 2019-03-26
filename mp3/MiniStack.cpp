@@ -1,4 +1,6 @@
 #include "MiniStack.h"
+#include <exception>
+#include <iostream>
 
 using namespace std;
 
@@ -35,7 +37,7 @@ void MiniStack<T>::Pop()
 {
 	if (Empty())
 	{
-		throw exception("Stack is empty");
+		cout << "stack empty" << endl;
 	}
 	counter--;
 }
@@ -45,7 +47,7 @@ T& MiniStack<T>::Top()
 {
 	if (Empty())
 	{
-		throw exception("Stack is empty");
+		cout << "stack empty" << endl;
 	}
 	return ptr[counter];
 }
